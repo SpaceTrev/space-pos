@@ -1,0 +1,52 @@
+import Layout from './_layout'
+
+export default ({ children }) => <Layout>{children}</Layout>
+
+# 🧠 Space POS Starter – Developer Docs
+
+A scalable, white-labeled Point of Sale + Webstore + Admin system built for exotic meat stores and beyond.
+
+This monorepo supports multi-tenant setups, theme + locale injection, automated onboarding, and rapid deployments — making it ideal for SaaS-style distribution or internal tooling.
+
+## 🚀 Tech Stack Overview
+
+| Layer         | Tech                                              |
+|---------------|---------------------------------------------------|
+| Frontend      | React, Next.js, Tailwind, ShadCN UI, Storybook    |
+| Backend/API   | Express, Node.js, PostgreSQL, Prisma              |
+| Auth          | AWS Cognito (guest + user auth, multitenant)      |
+| Infra         | Terraform, Docker, AWS (Cognito, RDS, S3)         |
+| CI/CD         | GitHub Actions, TurboRepo, Changesets             |
+| Developer UX  | CLI Tooling, Tenant Dev Portal, Local seed flows  |
+| Testing       | Vitest, Playwright, Visual Snapshots              |
+| Docs          | MDX-based docs, Storybook, API Contracts          |
+
+## 📦 What’s Included
+
+- Multi-Tenant Webstore with checkout + theming  
+- POS Interface built for in-store touchscreen use  
+- Admin Dashboard for managing users, inventory, orders  
+- Storybook + Unit Tests + Snapshot Tests  
+- CLI Tool for onboarding tenants, pushing starter repos  
+- Cognito Auth (optional guest fallback)  
+- Stripe Integration for payments (Apple/Google Pay ready)  
+- Terraform-managed Infra (Postgres, Cognito, Secrets)  
+- CI/CD, Dependabot, Release automation  
+
+## 🧩 Getting Started
+
+```bash
+pnpm install
+pnpm setup
+pnpm dev --filter=webstore
+```
+
+## 🛠 Deployment Notes
+
+- GitHub Deployments, Preview URLs, and optional repo generation are built-in.
+- Configure `.env.tenants/{tenant}.env` for isolated secrets.
+- Trigger deploys via GitHub Actions or the API directly.
+
+## 🤝 Contributions
+
+- See `DEPLOYMENT.md`, `DEVELOPING.md`, or `docs/internal/*`

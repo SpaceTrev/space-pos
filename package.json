@@ -30,8 +30,5 @@
     "test:ci": "vitest run --coverage",
     "test:ui:update": "playwright test --update-snapshots",
     "setup": "node scripts/setup.mjs"
-  },
-  "devDependencies": {
-    "turbo": "^1.10.12"
   }
 }
