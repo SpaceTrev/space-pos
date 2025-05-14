@@ -3,5 +3,8 @@
   "version": "0.1.0",
   "main": "src/index.ts",
   "types": "src/index.ts",
-  "private": true
+  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

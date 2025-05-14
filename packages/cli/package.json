@@ -8,5 +8,8 @@
   "dependencies": {
     "inquirer": "^9.1.5",
     "octokit": "^3.2.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

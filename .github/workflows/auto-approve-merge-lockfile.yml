@@ -1,0 +1,23 @@
+name: Auto Approve & Merge Lockfile Updates
+
+on:
+  pull_request:
+    branches: [main]
+    paths: [pnpm-lock.yaml]
+
+jobs:
+  auto-approve-and-merge:
+    if: github.actor == 'dependabot[bot]' || github.head_ref == 'lockfile/maintenance'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Auto-merge PR
+        uses: pascalgn/automerge-action@v0.15.6
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with:
+          merge-method: squash
+          labels: ""

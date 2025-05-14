@@ -1,0 +1,26 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: corepack enable && pnpm install
+      - run: pnpm --filter=docs export
+      - run: |
+          touch ./apps/docs/out/.nojekyll
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git --work-tree ./apps/docs/out checkout --orphan gh-pages
+          git --work-tree ./apps/docs/out add --all
+          git --work-tree ./apps/docs/out commit -m 'Deploy docs to GitHub Pages'
+          git push origin HEAD:gh-pages --force
