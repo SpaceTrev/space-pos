@@ -1,0 +1,14 @@
+{
+  "brand": {
+    "value": "#00529b",
+    "type": "color"
+  },
+  "background": {
+    "value": "#f5f5f5",
+    "type": "color"
+  },
+  "foreground": {
+    "value": "#000000",
+    "type": "color"
+  }
+}

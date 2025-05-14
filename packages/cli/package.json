@@ -1,0 +1,12 @@
+{
+  "name": "@platform/cli",
+  "version": "0.1.0",
+  "main": "create-tenant.ts",
+  "bin": {
+    "create-tenant": "./create-tenant.ts"
+  },
+  "dependencies": {
+    "inquirer": "^9.1.5",
+    "octokit": "^3.2.1"
+  }
+}

@@ -1,0 +1,34 @@
+name: Deploy Webstore
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Webstore
+        run: pnpm turbo run build --filter=webstore-meaty-mexico
+
+      - name: Deploy (custom)
+        run: echo "Insert deployment logic here (e.g., Amplify CLI, Vercel CLI, S3 CLI)"

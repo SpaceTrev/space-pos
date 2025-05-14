@@ -1,0 +1,39 @@
+name: Preview Deploy (Vercel)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [webstore-meaty-mexico, admin, pos]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build preview for ${{ matrix.app }}
+        run: pnpm turbo run build --filter=${{ matrix.app }}
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets['VERCEL_PROJECT_ID_${{ matrix.app }}'] }}
+          working-directory: apps/${{ matrix.app }}

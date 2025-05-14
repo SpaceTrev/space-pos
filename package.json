@@ -1,0 +1,34 @@
+{
+  "name": "pos-platform",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "packages/cli"
+  ],
+  "scripts": {
+    "build": "pnpm -r run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "publish-packages": "changeset publish",
+    "infra:init": "cd infra/aws && terraform init",
+    "infra:apply": "cd infra/aws && terraform apply -auto-approve",
+    "env:generate": "node scripts/generate-env-from-tf.mjs",
+    "secrets:upload": "node scripts/export-secrets-to-aws.mjs",
+    "infra:setup": "pnpm infra:init && pnpm infra:apply && pnpm env:generate && pnpm secrets:upload",
+    "sync:deps-branch": "bash scripts/sync-main-to-breaking.sh",
+    "changelog": "bash scripts/generate-changelog.sh",
+    "test:contract": "bash scripts/api-contract-test.sh",
+    "test:ui": "playwright test",
+    "test:ui:record": "playwright test --update-snapshots",
+    "install:playwright": "npx playwright install",
+    "audit:secrets": "trufflehog filesystem . --only-verified",
+    "audit:licenses": "bash scripts/license-check.sh",
+    "i18n:check": "node scripts/i18n-lint.mjs",
+    "test:smoke": "node scripts/post-deploy-smoke.mjs",
+    "test": "vitest",
+    "test:ci": "vitest run --coverage",
+    "test:ui:update": "playwright test --update-snapshots",
+    "setup": "node scripts/setup.mjs"
+  }
+}

@@ -1,0 +1,22 @@
+name: License Checker
+
+on:
+  schedule:
+    - cron: '0 4 * * 0'  # Weekly
+  workflow_dispatch:
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run license audit
+        run: pnpm audit:licenses

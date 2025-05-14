@@ -1,0 +1,18 @@
+name: Post-Deploy Smoke Tests
+
+on:
+  workflow_dispatch:
+  deployment_status:
+    types: [success]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Run smoke tests
+        run: pnpm test:smoke

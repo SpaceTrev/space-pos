@@ -1,0 +1,16 @@
+{
+  "files": [],
+  "references": [
+    { "path": "apps/admin" },
+    { "path": "apps/pos" },
+    { "path": "apps/web" },
+    { "path": "apps/api" },
+    { "path": "apps/docs" },
+    { "path": "packages/ui" },
+    { "path": "packages/cli" },
+    { "path": "packages/config" },
+    { "path": "packages/platform/webstore" },
+    { "path": "packages/platform/pos" },
+    { "path": "packages/platform/admin" }
+  ]
+}

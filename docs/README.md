@@ -1,0 +1,22 @@
+# 🧠 POS Platform Starter – Developer Docs
+
+This monorepo is a modern, white-labeled POS + Webstore + Admin system for exotic meat shops and beyond. It's designed for customization, scalability, and automation across multiple tenants.
+
+---
+
+## 🚀 Stack Overview
+
+| Layer          | Tech                                             |
+|----------------|--------------------------------------------------|
+| Frontend       | React, Next.js, Tailwind, ShadCN UI              |
+| Backend/API    | Express/Node.js, PostgreSQL, Prisma              |
+| Auth           | AWS Cognito (multi-tenant support)               |
+| Infra          | Terraform, Docker, AWS (S3, Cognito, RDS)        |
+| CI/CD          | GitHub Actions, TurboRepo                        |
+| Dev UX         | Tenant Dev Portal, CLI Tool                      |
+| Testing        | Vitest, Playwright, Storybook Snapshots          |
+| Docs           | MDX, auto-generated changelogs, API contracts    |
+
+Explore the other docs below for more specific workflows.
+
+---

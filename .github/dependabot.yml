@@ -1,0 +1,49 @@
+version: 2
+updates:
+  # Safe updates (minor/patch)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+      safe-deps:
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "fix(deps)"
+    labels:
+      - "automerge"
+      - "safe"
+    open-pull-requests-limit: 10
+
+  # Breaking updates (major only)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "dependabot/breaking-changes"
+    groups:
+      major-deps:
+        update-types:
+          - "version-update:semver-major"
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "DANGER: potentially breaking deps"
+    labels:
+      - "needs-review"
+      - "breaking"
+    open-pull-requests-limit: 5
+
+  # Lockfile maintenance
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(lockfile)"
+    labels:
+      - "lockfile"

@@ -1,0 +1,24 @@
+name: Auto-merge Safe Dependabot PRs
+
+on:
+  pull_request:
+    types: [opened, labeled, synchronize]
+
+jobs:
+  auto-approve-and-merge:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: hmarr/auto-approve-action@v3
+        if: contains(github.event.pull_request.title, 'DANGER:') == false
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Auto-merge safe PRs
+        uses: pascalgn/automerge-action@v0.16.3
+        if: contains(github.event.pull_request.title, 'DANGER:') == false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          mergeMethod: squash

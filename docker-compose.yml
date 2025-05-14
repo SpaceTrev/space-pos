@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER=postgres
+      POSTGRES_PASSWORD=postgres
+      POSTGRES_DB=pos_platform
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: ./apps/api
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/pos_platform
+      AWS_ACCESS_KEY_ID=example
+      AWS_SECRET_ACCESS_KEY=example
+      S3_BUCKET_NAME=example
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    volumes:
+      - ./apps/api:/app/apps/api
+
+volumes:
+  dbdata:

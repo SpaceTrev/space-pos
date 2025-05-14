@@ -1,0 +1,22 @@
+# 🧪 Testing Strategy
+
+## 🧬 Unit Tests
+
+- Run with `pnpm test`
+- Use `vitest` + `@testing-library/react`
+- Coverage in `lcov`, `text` formats
+
+## 👁️ Visual Tests (Playwright)
+
+- `tests/ui-homepage.spec.ts` captures UI snapshots
+- CI runs visual regression tests on PRs
+
+## 📘 Storybook Snapshots
+
+- Placeholder test for rendering all stories
+- Plan: auto-test stories using `@storybook/test-runner` or Chromatic
+
+## 🔍 API Contract Tests
+
+- Script: `scripts/api-contract-test.sh`
+- Future: validate against `openapi.yml` using Dredd/Spectral

@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "."
+  ],
+  "references": [
+    {
+      "path": "../../packages/platform"
+    },
+    {
+      "path": "../../packages/ui"
+    },
+    {
+      "path": "../../packages/config"
+    }
+  ]
+}

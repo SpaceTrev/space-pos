@@ -1,0 +1,36 @@
+import InternalLayout from '../../../components/InternalLayout'
+
+export const layout = InternalLayout
+
+# 🧱 Architecture Overview
+
+This is a Turborepo-based monorepo with modular packages and applications.
+
+## 📦 Packages
+
+- `@platform/ui` – reusable UI components (Button, Input, Card)
+- `@platform/platform` – core logic shared across apps
+- `@platform/config` – multi-tenant configurations (themes, locales)
+- `@platform/cli` – CLI for generating tenant apps
+- `@platform/docs` – documentation system
+
+## 🧪 Apps
+
+- `webstore-*` – customer-facing Next.js webstore
+- `admin` – internal admin dashboard
+- `pos` – in-store point-of-sale touch UI
+- `api` – Node.js backend with PostgreSQL
+- `dev-portal` – portal for generating tenant configs and scaffolding
+
+## 🔐 Multi-Tenant Strategy
+
+- Tenants stored in `config/tenants`
+- Auth with Cognito custom attribute `custom:tenantId`
+- DB queries scoped by tenant/store ID
+- Shared components, scoped design via Tailwind themes
+
+## 🔄 Turbo Build Pipeline
+
+Turbo speeds up builds and CI with:
+- `dev`, `build`, `typecheck`, `lint`, `test` pipelines
+- Smart caching and filtering

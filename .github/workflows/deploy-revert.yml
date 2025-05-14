@@ -1,0 +1,34 @@
+name: Auto-Revert Bad Deploys
+
+on:
+  deployment_status:
+    types: [failure]
+
+jobs:
+  revert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Find previous commit on main
+        id: previous
+        run: |
+          git fetch origin main
+          export PREV_COMMIT=$(git rev-list origin/main --max-count=2 | tail -n1)
+          echo "commit=$PREV_COMMIT" >> $GITHUB_OUTPUT
+
+      - name: Revert to previous good state
+        run: |
+          git checkout main
+          git revert --no-commit ${{ steps.previous.outputs.commit }}..HEAD
+          git commit -m "🚨 Auto-revert failed deployment"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
