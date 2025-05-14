@@ -1,0 +1,29 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: corepack enable && pnpm install
+      - run: pnpm --filter=@SpaceTrev/ui run build-storybook
+
+      - name: Deploy to gh-pages
+        run: |
+          touch ./packages/ui/storybook-static/.nojekyll
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git --work-tree ./packages/ui/storybook-static checkout --orphan gh-pages
+          git --work-tree ./packages/ui/storybook-static add --all
+          git --work-tree ./packages/ui/storybook-static commit -m 'Deploy Storybook'
+          git push origin HEAD:gh-pages --force
