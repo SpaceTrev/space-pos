@@ -1,0 +1,30 @@
+name: Auto-Approve & Merge Lockfile
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+jobs:
+  auto-approve:
+    if: startsWith(github.head_ref, 'lockfile/maintenance')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto-approve PR
+        uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-merge:
+    if: startsWith(github.head_ref, 'lockfile/maintenance')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}

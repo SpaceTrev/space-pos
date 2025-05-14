@@ -1,6 +1,6 @@
 # 🛠️ Amazon Web Services (AWS) Setup Guide
 
-This guide explains how to configure AWS for use with the `pos-platform-starter`, including Cognito for auth, S3 for image uploads, and optional Amplify for frontend hosting.
+This guide explains how to configure AWS for use with the `space-pos`, including Cognito for auth, S3 for image uploads, and optional Amplify for frontend hosting.
 
 ---
 

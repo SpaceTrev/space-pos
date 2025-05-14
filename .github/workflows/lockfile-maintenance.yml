@@ -1,0 +1,29 @@
+name: Lockfile Maintenance
+
+on:
+  schedule:
+    - cron: '0 3 * * 0' # Every Sunday at 3am UTC
+  workflow_dispatch:
+
+jobs:
+  update-lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - run: corepack enable
+      - run: pnpm install
+
+      - name: Commit updated lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b lockfile/maintenance || git checkout lockfile/maintenance
+          git add pnpm-lock.yaml
+          git commit -m "chore(lockfile): update lockfile"
+          git push origin lockfile/maintenance --force
