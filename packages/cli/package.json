@@ -1,5 +1,5 @@
 {
-  "name": "@platform/cli",
+  "name": "@SpaceTrev/cli",
   "version": "0.1.0",
   "main": "create-tenant.ts",
   "bin": {
@@ -8,5 +8,8 @@
   "dependencies": {
     "inquirer": "^9.1.5",
     "octokit": "^3.2.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

@@ -1,4 +1,4 @@
-# 🧠 POS Platform Starter – Developer Docs
+# 🧠 Space POS Starter – Developer Docs
 
 A scalable, white-labeled Point of Sale + Webstore + Admin system built for exotic meat stores and beyond.
 

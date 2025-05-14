@@ -23,7 +23,7 @@ resource "aws_db_instance" "pos_db" {
   vpc_security_group_ids = [aws_security_group.pos_db_sg.id]
 
   tags = {
-    Name = "POS Platform DB"
+    Name = "Space POS DB"
   }
 }
 

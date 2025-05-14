@@ -1,4 +1,4 @@
-# 🚧 Getting Started with `pos-platform-starter`
+# 🚧 Getting Started with `space-pos`
 
 This guide walks you through running the platform locally for development.
 

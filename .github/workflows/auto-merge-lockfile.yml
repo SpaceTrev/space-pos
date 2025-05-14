@@ -1,0 +1,27 @@
+name: Auto-merge Lockfile Maintenance
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'pnpm-lock.yaml'
+
+jobs:
+  auto-approve:
+    if: github.actor == 'dependabot[bot]' || github.actor == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-merge:
+    needs: auto-approve
+    if: github.actor == 'dependabot[bot]' || github.actor == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pascalgn/automerge-action@v0.15.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
