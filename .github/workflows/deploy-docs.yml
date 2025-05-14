@@ -14,8 +14,10 @@ jobs:
         with:
           node-version: 20
 
-      - run: corepack enable && pnpm install
+      - run: corepack enable
+      - run: pnpm install
       - run: pnpm --filter=docs export
+
       - run: |
           touch ./apps/docs/out/.nojekyll
           git config --global user.name 'github-actions'
