@@ -18,12 +18,12 @@ jobs:
       - run: corepack enable && pnpm install
       - run: pnpm --filter=@SpaceTrev/ui run build-storybook
 
-      - name: Deploy to gh-pages
+      - name: Deploy to /storybook folder on gh-pages
         run: |
-          touch ./packages/ui/storybook-static/.nojekyll
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git --work-tree ./packages/ui/storybook-static checkout --orphan gh-pages
-          git --work-tree ./packages/ui/storybook-static add --all
-          git --work-tree ./packages/ui/storybook-static commit -m 'Deploy Storybook'
-          git push origin HEAD:gh-pages --force
+          git fetch
+          git switch gh-pages || git checkout -b gh-pages
+          mkdir -p storybook
+          cp -r ./packages/ui/storybook-static/* ./storybook/
+          git add storybook
+          git commit -m "Update Storybook in /storybook"
+          git push origin gh-pages
