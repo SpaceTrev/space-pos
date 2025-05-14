@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog",
     {
-      "repo": "your-org/pos-platform-starter"
+      "repo": "your-org/space-pos"
     }
   ],
   "commit": false,

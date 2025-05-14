@@ -1,4 +1,4 @@
-# 🚀 Deployment Guide for `pos-platform-starter`
+# 🚀 Deployment Guide for `space-pos`
 
 This guide will help you publish this monorepo to GitHub as a private repo, configure GitHub Packages for NPM, scaffold a tenant webstore, and deploy to AWS or Vercel.
 
@@ -8,13 +8,13 @@ This guide will help you publish this monorepo to GitHub as a private repo, conf
 
 1. Unzip this project and navigate into the directory:
    ```bash
-   cd pos-platform-starter
+   cd space-pos
    ```
 
 2. Initialize Git and push to GitHub:
    ```bash
    git init
-   git remote add origin git@github.com:your-org/pos-platform-starter.git
+   git remote add origin git@github.com:your-org/space-pos.git
    git checkout -b main
    git add .
    git commit -m "Initial commit"

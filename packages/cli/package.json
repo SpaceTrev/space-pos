@@ -1,5 +1,5 @@
 {
-  "name": "@platform/cli",
+  "name": "@SpaceTrev/cli",
   "version": "0.1.0",
   "main": "create-tenant.ts",
   "bin": {

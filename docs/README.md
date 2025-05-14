@@ -1,4 +1,4 @@
-# 🧠 POS Platform Starter – Developer Docs
+# 🧠 Space POS Starter – Developer Docs
 
 This monorepo is a modern, white-labeled POS + Webstore + Admin system for exotic meat shops and beyond. It's designed for customization, scalability, and automation across multiple tenants.
 

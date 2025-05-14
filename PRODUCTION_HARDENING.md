@@ -1,6 +1,6 @@
 # 🔒 Production Hardening Checklist
 
-Ensure your `pos-platform-starter` deployment is secure and resilient.
+Ensure your `space-pos` deployment is secure and resilient.
 
 ---
 

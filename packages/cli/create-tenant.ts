@@ -16,7 +16,7 @@ const argv = yargs(hideBin(process.argv))
   .help().argv;
 
 async function main() {
-  console.log('🧪 POS Platform – Tenant Onboarding CLI');
+  console.log('🧪 Space POS – Tenant Onboarding CLI');
 
   const prompts = argv.yes ? {
     tenantName: 'Demo Tenant',

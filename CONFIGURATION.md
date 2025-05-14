@@ -1,4 +1,4 @@
-# 🛠️ Configuration Guide for `pos-platform-starter`
+# 🛠️ Configuration Guide for `space-pos`
 
 This guide explains how to configure tenants for your white-labeled POS, Webstore, and Admin apps.
 
