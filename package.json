@@ -32,6 +32,6 @@
     "setup": "node scripts/setup.mjs"
   },
   "devDependencies": {
-    "turbo": "^1.10.12"
+    "turbo": "^2.9.16"
   }
 }
